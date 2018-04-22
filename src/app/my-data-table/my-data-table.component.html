@@ -1,0 +1,25 @@
+
+
+
+
+
+<div class="containerAll">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <!-- <img src="../../assets/pics/refresh-round-symbol.svg" width="18px" class="refreshbutton" style="cursor: pointer" (click)="refreshMaquinas()"> -->
+      <table class="table table-bordered table-hover table-condensed">
+        <tr class="alert-info">
+          <th>Nombre <img src="./../../assets/sort-alternate.png" style="cursor: pointer" (click)="sortByName()"></th>
+          <th>Edad <img src="./../../assets/sort-alternate.png" style="cursor: pointer" (click)="sortByEdad()"></th>  
+          <th>Empleo <img src="./../../assets/sort-alternate.png"></th>  
+          <th>Ciudad <img src="./../../assets/sort-alternate.png"></th>  </tr>
+        <tr *ngFor="let item of pristineArray"> <td>{{item.name}}</td>  <td>{{item.edad}}</td>  <td>{{item.empleo}}</td>  <td>{{item.ciudad}}</td></tr>
+      </table>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+
+
+{{pristineArray | json}}
