@@ -61,9 +61,7 @@ export class MyDataTableComponent implements OnInit {
   }
 
   switchPage(newPage:number){
-    console.log("Cambia a la pagina "+newPage);
-    // let rowsPerPage = this.amountOfRows/this.amountOfPages;
-    this.myCustomArray = this.pristineArray.slice((this.amountOfRows*(newPage-1)), (this.amountOfRows*(newPage-1))+this.amountOfRows);
+    this.myCustomArray = this.pristineArray.slice((this.amountOfRows*(newPage-1)), ((this.amountOfRows*(newPage-1))+this.amountOfRows*1));
   }
 
   changeDataTable(){
@@ -73,7 +71,6 @@ export class MyDataTableComponent implements OnInit {
     this.pages = [];
     var i;
     if(this.amountOfRows>0 && this.amountOfPages!=1){
-      console.log('Numero de paginas: '+this.amountOfPages);
       for (i = 1; i < this.amountOfPages+1; i++) { 
         this.pages.push(i);
       }
