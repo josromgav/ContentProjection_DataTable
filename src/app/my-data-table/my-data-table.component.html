@@ -5,21 +5,42 @@
 
 <div class="containerAll">
   <div class="row">
-    <div class="col-3"></div>
+    <div class="col-2"></div>
     <div class="col-6">
-        <!-- <img src="../../assets/pics/refresh-round-symbol.svg" width="18px" class="refreshbutton" style="cursor: pointer" (click)="refreshMaquinas()"> -->
+      <div class="searchContainer">
+        <span>Resultados: </span>
+        <select name="amountOfRows" [(ngModel)]="amountOfRows" (ngModelChange)="changeDataTable()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+        <input type="text" name="" id="" placeholder="Buscar..." [(ngModel)]="amountOfRows" (ngModelChange)="changeDataTable()">
+      </div>
       <table class="table table-bordered table-hover table-condensed">
         <tr class="alert-info">
           <th>Nombre <img src="./../../assets/sort-alternate.png" style="cursor: pointer" (click)="sortByName()"></th>
           <th>Edad <img src="./../../assets/sort-alternate.png" style="cursor: pointer" (click)="sortByEdad()"></th>  
           <th>Empleo <img src="./../../assets/sort-alternate.png"></th>  
           <th>Ciudad <img src="./../../assets/sort-alternate.png"></th>  </tr>
-        <tr *ngFor="let item of pristineArray"> <td>{{item.name}}</td>  <td>{{item.edad}}</td>  <td>{{item.empleo}}</td>  <td>{{item.ciudad}}</td></tr>
+        <tr *ngFor="let item of myCustomArray"> <td>{{item.name}}</td>  <td>{{item.edad}}</td>  <td>{{item.empleo}}</td>  <td>{{item.ciudad}}</td></tr>
       </table>
+      <div class="containerPages">
+        <div *ngFor="let item of pages" class="pageButton" (click)="switchPage(item)"> <button>{{item}}</button></div>
+      </div>
     </div>
     <div class="col-3"></div>
   </div>
 </div>
 
 
-{{pristineArray | json}}
+<!-- {{pristineArray | json}}
+{{myCustomArray | json}} -->
+<!-- <p></p>
+<button (click)="removeFirst()">Borra</button>
+<p></p>
+<p><button (click)="showAmount(5)">Muestra 5</button></p>
+<p><button (click)="showAmount(10)">Muestra 10</button></p>
+<p><button (click)="showAmount(20)">Muestra 20</button></p>
+<p>Número de páginas: {{amountOfPages}}</p>
+<p>Paginas: {{pages}}</p> -->

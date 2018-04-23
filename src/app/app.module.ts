@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MyDataTableComponent } from './my-data-table/my-data-table.component';
@@ -12,7 +12,8 @@ import { MyDataTableComponent } from './my-data-table/my-data-table.component';
     MyDataTableComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

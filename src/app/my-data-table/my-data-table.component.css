@@ -2,8 +2,30 @@
 
 .containerAll{
     margin-top: 100px;
+
+}
+
+.searchContainer{
+    display: flex;
+    justify-content: flex-end;
+    /* margin-right: 10px; */
+}
+
+.searchContainer input{
+    margin-bottom: 10px;
 }
 
 img{
     width: 20px;
+}
+
+.containerPages{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.containerPages .pageButton{
+    display: inline;
+    margin: 3px;
 }
