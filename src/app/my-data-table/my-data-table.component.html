@@ -8,14 +8,14 @@
     <div class="col-2"></div>
     <div class="col-6">
       <div class="searchContainer">
-        <span>Resultados: </span>
+        <span>Resultados:  </span>
         <select name="amountOfRows" [(ngModel)]="amountOfRows" (ngModelChange)="changeDataTable()">
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
         </select>
-        <input type="text" name="" id="" placeholder="Buscar..." [(ngModel)]="amountOfRows" (ngModelChange)="changeDataTable()">
+        <input type="text" name="" id="" placeholder="Buscar..." [(ngModel)]="searchString" (ngModelChange)="filterSearch()">
       </div>
       <table class="table table-bordered table-hover table-condensed">
         <tr class="alert-info">
@@ -45,3 +45,4 @@
 -->
 <!-- <p>Número de páginas: {{amountOfPages}}</p>
 <p>Paginas: {{pages}}</p>  -->
+

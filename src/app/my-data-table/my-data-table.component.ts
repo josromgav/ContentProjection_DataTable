@@ -10,15 +10,19 @@ export class MyDataTableComponent implements OnInit {
 
   sortArbiter:boolean;
   amountOfRows:number = 5;
-  myCustomArray:any= [];
+  myFilteredArray:any=[];
+  myCustomArray:any=[];
   amountOfPages:number;
-  pages:any = [];
+  pages:any=[];
   currentPage:number;
+  searchString:string;
+  
   constructor() { }
 
   ngOnInit() {
-    this.myCustomArray = this.pristineArray.slice(0, this.amountOfRows);
-    this.amountOfPages = Math.ceil(this.pristineArray.length/this.amountOfRows);
+    this.myFilteredArray = this.pristineArray.slice(0);
+    this.myCustomArray = this.myFilteredArray.slice(0, this.amountOfRows);
+    this.amountOfPages = Math.ceil(this.myFilteredArray.length/this.amountOfRows);
     this.pages = [];
     var i;
     for (i = 1; i < this.amountOfPages+1; i++) { 
@@ -61,13 +65,13 @@ export class MyDataTableComponent implements OnInit {
   }
 
   switchPage(newPage:number){
-    this.myCustomArray = this.pristineArray.slice((this.amountOfRows*(newPage-1)), ((this.amountOfRows*(newPage-1))+this.amountOfRows*1));
+    this.myCustomArray = this.myFilteredArray.slice((this.amountOfRows*(newPage-1)), ((this.amountOfRows*(newPage-1))+this.amountOfRows*1));
   }
 
   changeDataTable(){
     
-    this.myCustomArray = this.pristineArray.slice(0, this.amountOfRows);
-    this.amountOfPages = Math.ceil(this.pristineArray.length/this.amountOfRows);
+    this.myCustomArray = this.myFilteredArray.slice(0, this.amountOfRows);
+    this.amountOfPages = Math.ceil(this.myFilteredArray.length/this.amountOfRows);
     this.pages = [];
     var i;
     if(this.amountOfRows>0 && this.amountOfPages!=1){
@@ -76,6 +80,20 @@ export class MyDataTableComponent implements OnInit {
       }
     }
     this.currentPage = 1;
+  }
+
+  filterSearch(){
+    this.myFilteredArray = [];
+    if(this.searchString.length!=0){
+      for(let item of this.pristineArray){
+        if(JSON.stringify(item).includes(this.searchString)){
+          this.myFilteredArray.push(item);
+        }
+      }
+    }else{
+      this.myFilteredArray = this.pristineArray.slice(0);
+    }
+    this.changeDataTable();
   }
 
   pristineArray:any = [

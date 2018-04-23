@@ -8,11 +8,20 @@
 .searchContainer{
     display: flex;
     justify-content: flex-end;
+    align-items: baseline;
     /* margin-right: 10px; */
 }
 
 .searchContainer input{
     margin-bottom: 10px;
+}
+
+.searchContainer span{
+    margin-right: 2px;
+}
+
+.searchContainer input{
+    margin-left: 9px;
 }
 
 img{
