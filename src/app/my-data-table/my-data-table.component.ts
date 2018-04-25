@@ -1,5 +1,6 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-my-data-table',
@@ -40,9 +41,17 @@ export class MyDataTableComponent implements OnInit {
     let i = parseInt(index);
     let property= this.keys[i];
     if(this.sortArbiter == false){
-      this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property].localeCompare(b[property]));
+      if(isNumber(this.pristineArray[0][property])){
+        this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property]-b[property]);
+      }else{
+        this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property].localeCompare(b[property]));
+      }
     }else{
-      this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property].localeCompare(b[property])).reverse();
+      if(isNumber(this.pristineArray[0][property])){
+        this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property]-b[property]).reverse();
+      }else{
+        this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property].localeCompare(b[property])).reverse();
+      }
     }
     this.changeDataTable(); //Recarga el dataTable completo que hemos reordenado
     this.sortArbiter = !this.sortArbiter;
