@@ -5,6 +5,23 @@
 
 }
 
+hr{
+    width: 50%;
+    margin-right: auto;
+}
+
+.title>p{
+    /* text-align: center; */
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+    /* margin-bottom: 20px; */
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
 .searchContainer{
     display: flex;
     justify-content: flex-end;
@@ -37,4 +54,8 @@ img{
 .containerPages .pageButton{
     display: inline;
     margin: 3px;
+}
+
+select{
+    min-width: 20px;
 }

@@ -4,9 +4,14 @@
 
 
 <div class="containerAll">
+  <div class="title row">
+    <div col-3></div>
+    <p><ng-content select=".title"></ng-content></p>
+  </div>
+  
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-6">
+    <div class="col-1"></div>
+    <div class="col-9">
       <div class="searchContainer">
         <span>Resultados:  </span>
         <select name="amountOfRows" [(ngModel)]="amountOfRows" (ngModelChange)="changeDataTable()">
@@ -17,7 +22,7 @@
         </select>
         <input type="text" name="" id="" placeholder="Buscar..." [(ngModel)]="searchString" (ngModelChange)="filterSearch()">
       </div>
-      <table class="table table-bordered table-hover table-condensed">
+      <table class="table table-bordered table-hover table-condensed "> <!-- table-responsive -->
         <thead>
           <tr class="alert-info"> <th *ngFor="let item of headers; let i=index">{{item}} <img src="./../../assets/sort-alternate.png" style="cursor: pointer" (click)="sortBy(i)"></th></tr>
         </thead>
@@ -29,7 +34,7 @@
         <div *ngFor="let item of pages" class="pageButton" (click)="switchPage(item)"> <button>{{item}}</button></div>
       </div>
     </div>
-    <div class="col-3"></div>
+    <div class="col-2"></div>
   </div>
 </div>
 <ng-content select="p"></ng-content>

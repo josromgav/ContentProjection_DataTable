@@ -1,7 +1,47 @@
 
 
+
+
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <app-my-data-table [pristineArray]="pristineArray2" [headers]="['Nombre','Empresa','Procedencia']">
+            <p class="title">Frutas y Hortalizas</p>
+        </app-my-data-table>
+    </div>
+    <div class="col-5">
+            <app-my-data-table [pristineArray]="pristineArray1" [headers]="['Nombre','Edad','Empleo', 'Ciudad']">
+                    <p class="title">Plantilla</p>
+            </app-my-data-table>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <app-my-data-table [pristineArray]="pristineArray3" [headers]="['Marca','Matricula','Plazas','Año','CV']">
+                <p class="title">Vehiculos disponibles</p>
+        </app-my-data-table>
+    </div>
+    <div class="col-5">
+        <app-my-data-table [pristineArray]="pristineArray4" [headers]="['Marca','Pulgadas','Nucleos','RAM','Precio(€)']">
+                <p class="title">Dispositivos móviles</p>
+        </app-my-data-table>
+    </div>
+    <div class="col-1"></div>
+</div>
+
+
+
+
+
+
+
+<!-- 
+
 <app-my-data-table [pristineArray]="pristineArray" [headers]="['Nombre','Edad','Empleo', 'Ciudad']">   
 </app-my-data-table>
 
 <app-my-data-table [pristineArray]="pristineArray2" [headers]="['Nombre','Empresa','Procedencia','Edad']">
-</app-my-data-table>
+</app-my-data-table> -->
