@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,8 +7,11 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./my-data-table.component.css']
 })
 export class MyDataTableComponent implements OnInit {
-
-  sortArbiter:boolean;
+  // pristineArray:any=[];
+  @Input() pristineArray:any;
+  @Input() headers:any[];
+  
+  sortArbiter:boolean = false;
   amountOfRows:number = 5;
   myFilteredArray:any=[];
   myCustomArray:any=[];
@@ -16,7 +19,7 @@ export class MyDataTableComponent implements OnInit {
   pages:any=[];
   currentPage:number;
   searchString:string;
-  
+  keys:any=[];
   constructor() { }
 
   ngOnInit() {
@@ -29,29 +32,19 @@ export class MyDataTableComponent implements OnInit {
       this.pages.push(i);
     }
     this.currentPage = 1;
+    this.keys = Object.keys(this.pristineArray[0]);
   }
 
 
-
-
-  sortByName(){
+  sortBy(index:string){
+    let i = parseInt(index);
+    let property= this.keys[i];
     if(this.sortArbiter == false){
-      this.myCustomArray = this.myCustomArray.sort((a,b)=>a.name.localeCompare(b.name));
+      this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property].localeCompare(b[property]));
     }else{
-      this.myCustomArray = this.myCustomArray.sort((a,b)=>a.name.localeCompare(b.name)).reverse();
+      this.myFilteredArray = this.myFilteredArray.sort((a,b)=>a[property].localeCompare(b[property])).reverse();
     }
-    this.sortArbiter = !this.sortArbiter;
-  }
-
-  sortByEdad(){
-    if(this.sortArbiter == null){
-      this.sortArbiter = false;
-    }
-    if(this.sortArbiter == false){
-      this.myCustomArray = this.myCustomArray.sort((a,b)=>a.edad.localeCompare(b.edad));
-    }else{
-      this.myCustomArray = this.myCustomArray.sort((a,b)=>a.edad.localeCompare(b.edad)).reverse();
-    }
+    this.changeDataTable(); //Recarga el dataTable completo que hemos reordenado
     this.sortArbiter = !this.sortArbiter;
   }
 
@@ -69,7 +62,6 @@ export class MyDataTableComponent implements OnInit {
   }
 
   changeDataTable(){
-    
     this.myCustomArray = this.myFilteredArray.slice(0, this.amountOfRows);
     this.amountOfPages = Math.ceil(this.myFilteredArray.length/this.amountOfRows);
     this.pages = [];
@@ -96,18 +88,4 @@ export class MyDataTableComponent implements OnInit {
     this.changeDataTable();
   }
 
-  pristineArray:any = [
-    {name:'Jose', edad:'25', empleo:'Programador', ciudad:'Sevilla'},
-    {name:'Antonio', edad:'32', empleo:'Cocinero', ciudad:'Manchester'},
-    {name:'Laura', edad:'19', empleo:'Estudiante', ciudad:'Madrid'},
-    {name:'Sergio', edad:'44', empleo:'Autonomo', ciudad:'Barcelona'},
-    {name:'David', edad:'23', empleo:'Deportista', ciudad:'Madrid'},
-    {name:'Alberto', edad:'16', empleo:'Estudiante', ciudad:'Malaga'},
-    {name:'Rosa', edad:'22', empleo:'Cuidadora', ciudad:'Sevilla'},
-    {name:'Carmen', edad:'20', empleo:'Pintora', ciudad:'Huelva'},
-    {name:'Maria', edad:'21', empleo:'Periodista', ciudad:'Jaen'},
-    {name:'Angel', edad:'20', empleo:'Electricista', ciudad:'Cadiz'},
-    {name:'Jeronimo', edad:'27', empleo: 'Ingeniero', ciudad:'Almeria'},
-    {name:'Adrian', edad:'25', empleo:'Abogado', ciudad:'Huelva'},
-  ];
 }
